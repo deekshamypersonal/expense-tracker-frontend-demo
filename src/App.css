@@ -1,0 +1,26 @@
+*{
+    margin : 0; 
+    padding : 0; 
+    box-sizing: border-box;
+}
+
+body{
+    margin : 0; 
+    padding : 0; 
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+}
+
+input::placeholder {
+    color: #9ca3af;
+  }
+  
+  input:focus::placeholder {
+    color: transparent;
+  }
+  
+  .flex.items-center span {
+    font-size: 1.2rem;
+  }
+  
