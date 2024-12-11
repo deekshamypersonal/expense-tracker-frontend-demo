@@ -1,10 +1,11 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import NavBar from './NavBar';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const MainLayout = ({ onLogout }) => {
   return (
     <div>
+      {/* <NavBar onLogout={onLogout} /> */}
       <NavBar onLogout={onLogout} />
       <div style={styles.content}>
         <Outlet />
@@ -15,7 +16,7 @@ const MainLayout = ({ onLogout }) => {
 
 const styles = {
   content: {
-    padding: '0px',
+    padding: "0px",
   },
 };
 
