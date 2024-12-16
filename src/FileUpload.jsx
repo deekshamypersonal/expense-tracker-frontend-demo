@@ -1,19 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { uploadBill } from "./api";
+import { DataContext } from "./DataContext";
 
 function FileUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [text, setText] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { expenses } = useContext(DataContext);
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Front-end check for PNG or JPEG
+    const validTypes = ["image/png", "image/jpeg"];
+    if (!validTypes.includes(file.type)) {
+      setErrorMessage("Please select a PNG or JPEG image only.");
+      event.target.value = null; // Reset file input
+      return;
+    }
+
+    setSelectedFile(file);
+    setErrorMessage(""); // Clear any previous error
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (expenses.length >= 10) {
+      setErrorMessage(
+        "Demo user can only have 10 expenses total. Please delete an existing one from View Expense tab."
+      );
+      return;
+    }
+
     if (!selectedFile) {
-      alert("Please select a file!");
+      setErrorMessage("Please select a PNG or JPEG file!");
       return;
     }
 
@@ -36,8 +58,11 @@ function FileUpload() {
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
       <h1 className="text-2xl font-bold text-center text-purple-700 mb-6 underline">
-        Upload a PNG File
+        Upload a PNG or JPEG File
       </h1>
+      <p className="text-sm text-center text-gray-600 mb-4">
+        Accepted formats: <span className="font-semibold">.png, .jpg</span>
+      </p>
       <form onSubmit={handleSubmit} className="space-y-4">
         {errorMessage && (
           <div className="text-red-500 text-center">{errorMessage}</div>
@@ -45,7 +70,7 @@ function FileUpload() {
         <div>
           <input
             type="file"
-            accept="image/png"
+            accept="image/png, image/jpeg"
             onChange={handleFileChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
           />
