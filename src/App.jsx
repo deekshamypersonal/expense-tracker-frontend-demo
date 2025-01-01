@@ -12,7 +12,7 @@ import "./App.css";
 function App() {
   return (
     <DataProvider>
-      <Router>
+      <Router basename="/expense-tracker-frontend-demo/">
         <div>
           <Routes>
             <Route path="/signup" element={<Signup />} />

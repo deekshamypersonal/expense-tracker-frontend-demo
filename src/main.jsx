@@ -6,8 +6,6 @@ import "./App.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename={"/expense-tracker-frontend-demo/"}>
-      <App />
-    </BrowserRouter>
+    <App />
   </React.StrictMode>
 );
