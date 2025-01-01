@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
     
-    "homepage": "https://deekshamypersonal.github.io/",
+    "homepage": "https://deekshamypersonal.github.io/expense-tracker-frontend-demo/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
