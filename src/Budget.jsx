@@ -35,14 +35,17 @@ function Budget() {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/setBudget", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
-        body: JSON.stringify(budgetRequest),
-      });
+      const response = await fetch(
+        "https://boiling-falls-18986-30e9355ab2d9.herokuapp.com/setBudget",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+          body: JSON.stringify(budgetRequest),
+        }
+      );
       if (response.ok) {
         fetchBudgets(token);
         setCategory("shopping");
@@ -66,12 +69,15 @@ function Budget() {
 
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch(`http://localhost:8080/deleteBudget/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: token,
-        },
-      });
+      const response = await fetch(
+        `https://boiling-falls-18986-30e9355ab2d9.herokuapp.com/deleteBudget/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
       if (response.ok) {
         fetchBudgets(token);
       } else {

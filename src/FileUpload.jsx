@@ -51,7 +51,9 @@ function FileUpload() {
       setErrorMessage("");
     } catch (error) {
       console.error("There was an error uploading the file!", error);
-      setErrorMessage("Failed to upload file. Please try again.");
+      setErrorMessage(
+        "No valid receipt data found. Please upload a valid bill."
+      );
     }
   };
 

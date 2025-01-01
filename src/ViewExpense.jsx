@@ -42,7 +42,7 @@ function ViewExpense() {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        `http://localhost:8080/deleteExpense/${id}`,
+        `https://boiling-falls-18986-30e9355ab2d9.herokuapp.com/deleteExpense/${id}`,
         {
           method: "DELETE",
           headers: {
