@@ -24,6 +24,22 @@ export async function registerUser(userData) {
   if (!response.ok) throw new Error("Error registering user");
 }
 
+// export async function uploadBill(file, token) {
+//   const formData = new FormData();
+//   formData.append("file", file);
+
+//   const response = await fetch(`${BASE_URL}/upload`, {
+//     method: "POST",
+//     headers: {
+//       Authorization: token,
+//     },
+//     body: formData,
+//   });
+
+//   if (!response.ok) throw new Error("Failed to upload the file");
+//   return response.text();
+// }
+
 export async function uploadBill(file, token) {
   const formData = new FormData();
   formData.append("file", file);
@@ -36,8 +52,11 @@ export async function uploadBill(file, token) {
     body: formData,
   });
 
-  if (!response.ok) throw new Error("Failed to upload the file");
-  return response.text();
+  if (!response.ok) {
+    throw new Error("Failed to upload file");
+  }
+
+  return response.json(); // This should match the BillResponse structure
 }
 
 export async function setExpense(expenseRequest, token) {
